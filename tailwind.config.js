@@ -7,7 +7,20 @@ module.exports = {
 		'./src/assets/**/*.{js,jsx}',
 	],
 	theme: {
-		extend: {},
+		extend: {
+			backgroundImage: {
+				heroBg: "url('assets/images/hero.jpg')",
+			},
+			spacing: {
+				'512px': '32rem',
+			},
+			dropShadow: {
+				red: '-6px 8px 0 rgba(261, 0, 50, 1)',
+			},
+			maxWidth: {
+				'261px': '261px',
+			},
+		},
 		colors: {
 			black: '#000000',
 			white: '#ffffff',

@@ -19,7 +19,7 @@ const Navbar = () => {
 	return (
 		<>
 			<IconContext.Provider value={{ color: 'white', size: '2em' }}>
-				<div className='flex justify-center items-center h-16 bg-half-black'>
+				<header className='flex justify-center items-center h-16 bg-half-black fixed w-full z-10'>
 					<div className='w-11/12 sm:container flex justify-between items-center'>
 						<Logo />
 						<Link to='#' className='lg:hidden' onClick={showSidebar}>
@@ -27,22 +27,25 @@ const Navbar = () => {
 						</Link>
 
 						<nav
-							className={`absolute
-							 w-full h-full bg-black opacity-100 transition-all delay-200 bottom-0 ${
+							className={`nav absolute
+							 w-screen h-screen bg-black opacity-100 transition-all delay-200 bottom-0 top-0 ${
 									sidebar ? 'left-0' : 'left-full'
-								}`}>
-							<div className='mt-5 mr-5 flex flex-col items-end h-full'>
-								<Link to='#' onClick={showSidebar}>
+								} lg:static lg:w-2/3`}>
+							<div
+								className='mt-5 mr-5 flex flex-col items-end h-full
+							lg:flex-row lg:mr-0 lg:mt-0 lg:items-center lg:justify-between'>
+								<Link to='#' className='lg:hidden' onClick={showSidebar}>
 									<FiX />
 								</Link>
 
-								<div className='h-4/6 flex flex-col justify-center mr-7'>
-									<ul className='nav-links h-3/6 flex flex-col justify-around items-end font-poppins text-xl uppercase text-right text-white'>
+								<div className='h-4/6 flex flex-col justify-center mr-7 lg:mr-7 lg:w-2/3 lg:h-fit'>
+									<ul
+										className='nav-links h-3/6 flex flex-col justify-around items-end
+									font-poppins text-xl uppercase text-right text-white
+									lg:flex-row lg:justify-between'>
 										{NavbarData.map((link, idx) => {
 											return (
-												<li
-													className='w-fit border-b-0 hover:border-b transition-all'
-													key={idx}>
+												<li className='underline-hover' key={idx}>
 													<Link to={link.path}>{link.title}</Link>
 												</li>
 											)
@@ -50,9 +53,9 @@ const Navbar = () => {
 									</ul>
 								</div>
 
-								<div className='nav-buttons flex w-1/2 justify-between mr-7'>
+								<div className='nav-buttons flex w-1/2 justify-end mr-7 lg:mr-0'>
 									<Link to='#'>
-										<BsFillCartFill />
+										<BsFillCartFill className='mr-5' />
 									</Link>
 
 									<NavBtn
@@ -65,7 +68,7 @@ const Navbar = () => {
 							</div>
 						</nav>
 					</div>
-				</div>
+				</header>
 			</IconContext.Provider>
 		</>
 	)
