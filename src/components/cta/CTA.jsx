@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
 
-const CTA = ({ children, type = 'primary' || 'secondry', rounded, path }) => {
+const CTA = ({
+	children,
+	type = 'primary' || 'secondry',
+	rounded,
+	path,
+	className,
+}) => {
 	const roundCheck = () => {
 		if (rounded) {
 			return 'rounded-md'
@@ -25,7 +31,8 @@ const CTA = ({ children, type = 'primary' || 'secondry', rounded, path }) => {
 			to={path}
 			className={`px-1.5 py-2 font-poppins font-medium uppercase text-xl border-2 border-red transition all
       ${roundCheck()}
-      ${typeChecker()}`}>
+      ${typeChecker()}
+			${className}`}>
 			{children}
 		</Link>
 	)

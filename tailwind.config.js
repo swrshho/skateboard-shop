@@ -4,7 +4,8 @@ module.exports = {
 	content: [
 		'./public/index.html',
 		'./src/components/**/*{js,jsx}',
-		'./src/assets/**/*.{js,jsx}',
+		'./src/assets/**/*{js,jsx}',
+		'./src/pages/**/**/*.{js,jsx}',
 	],
 	theme: {
 		extend: {
@@ -13,12 +14,19 @@ module.exports = {
 			},
 			spacing: {
 				'512px': '32rem',
+				'650px': '40.625rem',
 			},
 			dropShadow: {
 				red: '-6px 8px 0 rgba(261, 0, 50, 1)',
 			},
+			minWidth: {
+				'274px': '17.25rem',
+				'420px': '26.25rem',
+				'450px': '28.125rem',
+			},
 			maxWidth: {
 				'261px': '261px',
+				'512px': '32rem',
 			},
 		},
 		colors: {
