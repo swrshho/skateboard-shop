@@ -1,5 +1,5 @@
-import RedTextShadow from '../redTextShadow/RedTextShadow'
-import CTA from '../cta/CTA'
+import RedTextShadow from '../../../../components/redTextShadow/RedTextShadow'
+import CTA from '../../../../components/cta/CTA'
 const Hero = () => {
 	return (
 		<div className='h-screen bg-heroBg bg-cover bg-center flex flex-col md:h-512px'>
