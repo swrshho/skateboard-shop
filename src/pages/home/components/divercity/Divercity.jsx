@@ -35,7 +35,7 @@ const Divercity = () => {
 					)}
 				</div>
 
-				<p className='font-poppins text-base min-w-420px max-w-512px md:text-xl'>
+				<p className='font-poppins text-base min-w-320px max-w-512px md:text-xl'>
 					Rolling wheels offers a variaty of skakteboard styles for you to
 					choose from.
 					<br /> We are proud to say that we have been able to provide

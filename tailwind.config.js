@@ -21,12 +21,19 @@ module.exports = {
 			},
 			minWidth: {
 				'274px': '17.25rem',
-				'420px': '26.25rem',
+				'320px': '20rem',
 				'450px': '28.125rem',
 			},
 			maxWidth: {
 				'261px': '261px',
 				'512px': '32rem',
+			},
+			maxHeight: {
+				'420px': '26.125rem',
+				'656px': '41rem',
+			},
+			borderRadius: {
+				xLarge: '2.5rem',
 			},
 		},
 		colors: {
