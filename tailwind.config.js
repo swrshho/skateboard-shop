@@ -11,6 +11,8 @@ module.exports = {
 		extend: {
 			backgroundImage: {
 				heroBg: "url('assets/images/hero.jpg')",
+				bulletsBg: "url('assets/images/bullets-bg.png')",
+				bulletsBgFaded: "url('assets/images/bullets-bg-faded.png')",
 			},
 			spacing: {
 				'512px': '32rem',
@@ -18,6 +20,9 @@ module.exports = {
 			},
 			dropShadow: {
 				red: '-6px 8px 0 rgba(261, 0, 50, 1)',
+			},
+			width: {
+				116: '29rem',
 			},
 			minWidth: {
 				'274px': '17.25rem',
