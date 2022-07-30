@@ -25,12 +25,15 @@ module.exports = {
 				116: '29rem',
 			},
 			minWidth: {
+				92: '23rem',
 				'274px': '17.25rem',
 				'320px': '20rem',
 				'450px': '28.125rem',
 			},
 			maxWidth: {
+				'215px': '13.5rem',
 				'261px': '261px',
+				'330px': '20.5rem',
 				'512px': '32rem',
 			},
 			maxHeight: {
