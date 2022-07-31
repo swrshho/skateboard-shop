@@ -1,5 +1,5 @@
 const RedText = ({ children }) => {
-	return <span className='text-red'>{children}</span>
-}
+  return <span className="text-red">{children}</span>;
+};
 
-export default RedText
+export default RedText;

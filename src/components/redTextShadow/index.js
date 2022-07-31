@@ -1,1 +1,1 @@
-export { default } from './RedTextShadow'
+export { default } from "./RedTextShadow";

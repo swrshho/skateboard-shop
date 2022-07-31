@@ -1,1 +1,1 @@
-export { default } from './RedText'
+export { default } from "./RedText";

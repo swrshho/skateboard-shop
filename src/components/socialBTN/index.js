@@ -1,1 +1,1 @@
-export { default } from './SocialBTN'
+export { default } from "./SocialBTN";

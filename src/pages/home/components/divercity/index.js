@@ -1,1 +1,1 @@
-export { default } from './Divercity'
+export { default } from "./Divercity";

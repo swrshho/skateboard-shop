@@ -1,28 +1,29 @@
-import CTA from '../cta/CTA'
+import CTA from "../cta/CTA";
 
 const ProductCard = ({ name, price, image }) => {
-	return (
-		<div
-			className={`flex flex-col justify-end items-center h-40 max-h-420px max-w-xs w-5/6 md:w-64 md:h-full
-       bg-light-bluish-gray rounded-xLarge last:rounded-b-none md:rounded-b-none`}>
-			<div className='flex justify-center items-center h-16 md:h-full'>
-				<img
-					className='rotate-90 w-2/5 sm:w-5/12 md:rotate-0 md:w-10/12'
-					src={image}
-					alt={name}
-				/>
-			</div>
-			<h3 className='font-poppins font-medium text-base text-black uppercase md:text-lg'>
-				{name}
-			</h3>
-			<span className='text-dark-blue font-poppins font-medium text-base md:text-lg'>
-				${price}
-			</span>
-			<CTA className='text-sm py-1 md:text-base' type='primary' path='/shop'>
-				add to cart
-			</CTA>
-		</div>
-	)
-}
+  return (
+    <div
+      className={`flex h-40 max-h-420px w-5/6 max-w-xs flex-col items-center justify-end rounded-xLarge bg-light-bluish-gray
+       last:rounded-b-none md:h-full md:w-64 md:rounded-b-none`}
+    >
+      <div className="flex h-16 items-center justify-center md:h-full">
+        <img
+          className="w-2/5 rotate-90 sm:w-5/12 md:w-10/12 md:rotate-0"
+          src={image}
+          alt={name}
+        />
+      </div>
+      <h3 className="font-poppins text-base font-medium uppercase text-black md:text-lg">
+        {name}
+      </h3>
+      <span className="font-poppins text-base font-medium text-dark-blue md:text-lg">
+        ${price}
+      </span>
+      <CTA className="py-1 text-sm md:text-base" type="primary" path="/shop">
+        add to cart
+      </CTA>
+    </div>
+  );
+};
 
-export default ProductCard
+export default ProductCard;
