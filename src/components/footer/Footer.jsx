@@ -7,11 +7,11 @@ import Logo from '../../assets/logo/Logo'
 const Footer = () => {
 	return (
 		<div className='flex h-screen flex-col items-center justify-between bg-velvet-red p-10 pb-2 font-poppins sm:h-512px'>
-			<h1 className='min-w-450px max-w-512px text-center font-anton text-6xl uppercase text-white'>
+			<h1 className='mb-4 min-w-450px max-w-512px text-center font-anton text-6xl uppercase text-white'>
 				get the latest news about us
 			</h1>
 
-			<div className='flex w-4/5 max-w-330px flex-col items-center justify-between sm:max-w-512px'>
+			<div className='mb-4 flex w-4/5 max-w-330px flex-col items-center justify-between sm:max-w-512px'>
 				<form className='sm:flex'>
 					<input
 						className='h-12 w-full rounded-md p-2 text-black sm:rounded-r-none'
@@ -36,7 +36,7 @@ const Footer = () => {
 				</CTA>
 			</div>
 
-			<div className='sm:min-w-92 sm:max-w-sm'>
+			<div className='mb-4 sm:min-w-92 sm:max-w-sm'>
 				<ul
 					className='flex h-full w-full flex-col items-center justify-around
 						font-poppins text-xl capitalize text-white
@@ -49,10 +49,11 @@ const Footer = () => {
 				</ul>
 			</div>
 
-			<SocialLinks className='sm:hidden' />
+			<SocialLinks className='mb-4 sm:hidden' />
+
+			<hr className='mb-4 inline-block h-px w-full text-white' />
 
 			<div className='flex w-full flex-col items-center justify-between'>
-				<span className='mb-4 inline-block h-px w-full bg-white' />
 				<div className='flex w-11/12 flex-col items-center justify-between sm:flex-row'>
 					<Logo />
 					<p className='text-center font-poppins capitalize text-white'>

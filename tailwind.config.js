@@ -9,6 +9,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			screens: {
+				'x-md': '800px',
+			},
 			backgroundImage: {
 				heroBg: "url('assets/images/hero.jpg')",
 				bulletsBg: "url('assets/images/bullets-bg.png')",
