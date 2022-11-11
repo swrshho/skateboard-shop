@@ -1,6 +1,10 @@
 // landing page
-import HomePage from "./../pages/home";
+import HomePage from './../pages/home'
+import Auth from '../pages/auth'
 
-const userRoutes = [{ path: "/", component: <HomePage /> }];
+const userRoutes = [
+	{ path: '/home', component: <HomePage /> },
+	{ path: '/auth', component: <Auth /> },
+]
 
-export { userRoutes };
+export { userRoutes }

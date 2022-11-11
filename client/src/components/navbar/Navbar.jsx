@@ -59,7 +59,7 @@ const Navbar = () => {
 									</Link>
 
 									<NavBtn
-										path='#'
+										path='/auth'
 										title='sign in'
 										icon={<FaUserAlt className='mr-3' />}
 										color='black'
