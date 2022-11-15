@@ -26,8 +26,18 @@ const Auth = () => {
 					</div>
 
 					<form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
+						{isSignUp && (
+							<>
+								<Input type='text' placeHolder='Your First Name' />
+								<Input type='text' placeHolder='Your Last Name' />
+							</>
+						)}
 						<Input type='email' placeHolder='Your Email Address' />
 						<Input type='password' placeHolder='Your Password' />
+						{isSignUp && (
+							<Input type='password' placeHolder='Confirm Your Password' />
+						)}
+
 						<Button type='submit' rounded color='primary'>
 							{isSignUp ? 'Sign Up' : 'Sign In'}
 						</Button>
