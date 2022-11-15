@@ -1,9 +1,12 @@
-const Input = ({ type, placeHolder, className }) => {
+const Input = ({ type, placeHolder, onChange, name, label, className }) => {
 	return (
 		<input
+			className={`w-full rounded-md p-2 ${className}`}
 			type={type}
 			placeholder={placeHolder}
-			className={`w-full rounded-md p-2 ${className}`}
+			onChange={onChange}
+			name={name}
+			label={label}
 		/>
 	)
 }

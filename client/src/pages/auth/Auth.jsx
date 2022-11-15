@@ -6,11 +6,26 @@ import Input from '../../components/input'
 import { useState } from 'react'
 const Auth = () => {
 	const [isSignUp, setIsSignUp] = useState(false)
-	const handleSubmit = () => {}
-	const googleLogin = () => {}
 	const switchMode = () => {
 		setIsSignUp(!isSignUp)
 	}
+
+	const initialFormState = {
+		firstName: '',
+		lastName: '',
+		email: '',
+		password: '',
+		confirmPassword: '',
+	}
+
+	const [formData, setFormData] = useState(initialFormState)
+
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value })
+	}
+
+	const handleSubmit = () => {}
+	const googleLogin = () => {}
 	return (
 		<>
 			<Navbar />
@@ -28,14 +43,44 @@ const Auth = () => {
 					<form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
 						{isSignUp && (
 							<>
-								<Input type='text' placeHolder='Your First Name' />
-								<Input type='text' placeHolder='Your Last Name' />
+								<Input
+									type='text'
+									placeHolder='Your First Name'
+									name='firstName'
+									label='First Name'
+									onChange={handleChange}
+								/>
+								<Input
+									type='text'
+									placeHolder='Your Last Name'
+									name='lastName'
+									label='Last Name'
+									onChange={handleChange}
+								/>
 							</>
 						)}
-						<Input type='email' placeHolder='Your Email Address' />
-						<Input type='password' placeHolder='Your Password' />
+						<Input
+							type='email'
+							placeHolder='Your Email Address'
+							name='email'
+							label='Email'
+							onChange={handleChange}
+						/>
+						<Input
+							type='password'
+							placeHolder='Your Password'
+							name='password'
+							label='Password'
+							onChange={handleChange}
+						/>
 						{isSignUp && (
-							<Input type='password' placeHolder='Confirm Your Password' />
+							<Input
+								type='password'
+								placeHolder='Confirm Your Password'
+								name='confirmPassword'
+								label='Confirm Password'
+								onChange={handleChange}
+							/>
 						)}
 
 						<Button type='submit' rounded color='primary'>

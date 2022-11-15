@@ -30,7 +30,7 @@ const Navbar = () => {
 							className={`nav absolute
 							 bottom-0 top-0 h-screen w-screen bg-black opacity-100 transition-all delay-200 ${
 									sidebar ? 'left-0' : 'left-full'
-								} lg:static lg:w-2/3`}>
+								} lg:static lg:h-fit lg:w-2/3`}>
 							<div
 								className='mt-5 mr-5 flex h-full flex-col items-end
 							lg:mr-0 lg:mt-0 lg:flex-row lg:items-center lg:justify-between'>
