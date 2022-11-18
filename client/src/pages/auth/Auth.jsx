@@ -1,10 +1,22 @@
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { useGoogleLogin } from '@react-oauth/google'
+import { apiGoogleAuth } from '../../api'
+import decode from 'jwt-decode'
+// assets and content
 import Navbar from '../../components/navbar'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import GoogleIcon from '@mui/icons-material/Google'
 import Button from '../../components/button'
 import Input from '../../components/input'
-import { useState } from 'react'
+
+// actions
+import { signin, signup, googleAuth } from '../../features/auth/authSlice'
+
 const Auth = () => {
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const [isSignUp, setIsSignUp] = useState(false)
 	const switchMode = () => {
 		setIsSignUp(!isSignUp)
@@ -24,8 +36,29 @@ const Auth = () => {
 		setFormData({ ...formData, [e.target.name]: e.target.value })
 	}
 
-	const handleSubmit = () => {}
-	const googleLogin = () => {}
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		if (isSignUp) {
+			dispatch(signup({ formData, navigate }))
+		} else {
+			dispatch(signin({ formData, navigate }))
+		}
+	}
+	const googleLogin = useGoogleLogin({
+		onSuccess: async ({ code }) => {
+			let user_info
+			let token
+			try {
+				const { data } = await apiGoogleAuth(code)
+				user_info = decode(data.tokens.id_token)
+				token = data.tokens.id_token
+			} catch (error) {
+				console.error(`Google Login Failed ${error}`)
+			}
+			dispatch(googleAuth({ user_info, token, navigate }))
+		},
+		flow: 'auth-code',
+	})
 	return (
 		<>
 			<Navbar />
@@ -87,7 +120,11 @@ const Auth = () => {
 							{isSignUp ? 'Sign Up' : 'Sign In'}
 						</Button>
 
-						<Button onClick={googleLogin} rounded color='secondry'>
+						<Button
+							type='button'
+							onClick={googleLogin}
+							rounded
+							color='secondry'>
 							<GoogleIcon />
 							Sign In With Google
 						</Button>

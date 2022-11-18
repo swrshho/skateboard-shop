@@ -1,13 +1,20 @@
 const bcrypt = require('bcrypt')
-const jwt = require0('jsonwebtoken')
+const jwt = require('jsonwebtoken')
+const { OAuth2Client } = require('google-auth-library')
 
 const User = require('../models/user')
 
-const signUp = async (req, res) => {
+const oAuth2Client = new OAuth2Client(
+	process.env.CLIENT_ID,
+	process.env.CLIENT_SECRET,
+	'postmessage'
+)
+
+const signup = async (req, res) => {
 	const { firstName, lastName, email, password, confirmPassword } = req.body
 
 	try {
-		const existingUser = User.findOne({ email })
+		const existingUser = await User.findOne({ email })
 
 		if (existingUser) {
 			return res.status(400).json({ message: 'User Already Exists' })
@@ -24,17 +31,17 @@ const signUp = async (req, res) => {
 			name: `${firstName}, ${lastName}`,
 		})
 
-		const token = json.sign({ email: result.email, id: result._id }, 'test', {
+		const token = jwt.sign({ email: result.email, id: result._id }, 'test', {
 			expiresIn: '1h',
 		})
 
-		res.status(200).json({ result, token })
+		return res.status(200).json({ result, token })
 	} catch (error) {
-		res.status(500).json({ message: `Something Went Wrong: ${error}` })
+		return res.status(500).json({ message: `Sign Up failed ${error}` })
 	}
 }
 
-const signIn = async (req, res) => {
+const signin = async (req, res) => {
 	const { email, password } = req.body
 
 	try {
@@ -58,7 +65,21 @@ const signIn = async (req, res) => {
 			'test',
 			{ expiresIn: '1h' }
 		)
-	} catch (error) {}
+
+		return res.status(200).json({ result: existingUser, token })
+	} catch (error) {
+		return res.status(500).json({ message: `Sign In failed ${error}` })
+	}
 }
 
-module.exports = { signIn, signUp }
+const googleLogin = async (req, res) => {
+	try {
+		const { tokens } = await oAuth2Client.getToken(req.body.code)
+		return res.status(200).json({ tokens })
+	} catch (error) {
+		return res.status(500).json({ message: `Google Login failed ${error}` })
+	}
+}
+// const googleRefreshToken = () => {}
+
+module.exports = { signin, signup, googleLogin }

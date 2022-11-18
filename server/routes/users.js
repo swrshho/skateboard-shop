@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-const { signIn, signUp } = require('')
+const { signin, signup, googleLogin } = require('../controllers/users')
 
-router.post('signin', signIn)
-router.post('signup', signUp)
+router.post('/signin', signin)
+router.post('/signup', signup)
+router.post('/google', googleLogin)
+// router.post('/google/refresh-token', googleRefreshToken)
 
 module.exports = router
