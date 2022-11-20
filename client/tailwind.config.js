@@ -16,7 +16,7 @@ module.exports = {
 				heroBg: "url('assets/images/hero.jpg')",
 				bulletsBg: "url('assets/images/bullets-bg.png')",
 				bulletsBgFaded: "url('assets/images/bullets-bg-faded.png')",
-				authBg: "url('assets/images/auth-bg.jpg')",
+				authBg: "url('assets/images/auth-bg.png')",
 			},
 			spacing: {
 				'512px': '32rem',

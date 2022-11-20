@@ -30,3 +30,14 @@
 	transform: scaleX(1);
 	transform-origin: bottom left;
 }
+
+.bg-pattern {
+	background: linear-gradient(135deg, #edf2f4 25%, transparent 25%) -65px 0/
+			130px 130px,
+		linear-gradient(225deg, rgba(237, 242, 244, 0.5) 25%, transparent 25%) -65px
+			0/ 130px 130px,
+		linear-gradient(315deg, #edf2f4 25%, transparent 25%) 0 0/ 130px 130px,
+		linear-gradient(45deg, rgba(237, 242, 244, 0.5) 25%, #2b2d42 25%) 0 0/ 130px
+			130px;
+	background-color: #2b2d42;
+}

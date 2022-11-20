@@ -64,7 +64,7 @@ const Navbar = () => {
 									sidebar ? 'left-0' : 'left-full'
 								} lg:static lg:h-fit lg:w-2/3`}>
 						<div
-							className='mt-5 mr-10 flex h-full flex-col items-end
+							className='mt-5 flex h-full w-11/12 flex-col items-end
 							lg:mr-0 lg:mt-0 lg:flex-row lg:items-center lg:justify-between'>
 							<Link to='#' className='lg:hidden' onClick={showSidebar}>
 								<CloseIcon
@@ -88,7 +88,7 @@ const Navbar = () => {
 								</menu>
 							</div>
 
-							<div className='nav-buttons flex w-1/2 justify-end lg:mr-0'>
+							<div className='nav-buttons flex justify-end lg:mr-0'>
 								<Link to='#'>
 									<ShoppingCartIcon
 										fontSize='large'
