@@ -3,6 +3,9 @@ import * as api from '../../api'
 
 const initialState = {
 	authData: JSON.parse(localStorage.getItem('user')),
+	isLoading: false,
+	failed: false,
+	errorMessage: '',
 }
 
 export const signin = createAsyncThunk(
@@ -15,7 +18,7 @@ export const signin = createAsyncThunk(
 			return data
 		} catch (error) {
 			console.error(`Sign In failed ${error}`)
-			return thunkAPI.rejectWithValue('Sign In failed')
+			return thunkAPI.rejectWithValue(error.response.data)
 		}
 	}
 )
@@ -30,7 +33,7 @@ export const signup = createAsyncThunk(
 			return data
 		} catch (error) {
 			console.error(`Sign Up failed ${error}`)
-			return thunkAPI.rejectWithValue('Sign Up failed')
+			return thunkAPI.rejectWithValue(error.response.data)
 		}
 	}
 )
@@ -56,13 +59,31 @@ const authSlice = createSlice({
 		},
 	},
 	extraReducers: {
+		[signin.pending]: (state, action) => {
+			state.isLoading = true
+		},
+		[signin.rejected]: (state, { payload }) => {
+			state.isLoading = false
+			state.failed = true
+			state.errorMessage = payload
+		},
 		[signin.fulfilled]: (state, { payload }) => {
 			state.authData = { ...payload.result, token: payload.token }
 			localStorage.setItem('user', JSON.stringify(state.authData))
+			state.isLoading = false
+		},
+		[signup.pending]: (state, action) => {
+			state.isLoading = true
+		},
+		[signup.rejected]: (state, { payload }) => {
+			state.isLoading = false
+			state.failed = true
+			state.errorMessage = payload
 		},
 		[signup.fulfilled]: (state, { payload }) => {
 			state.authData = { ...payload.result, token: payload.token }
 			localStorage.setItem('user', JSON.stringify(state.authData))
+			state.isLoading = false
 		},
 	},
 })

@@ -1,26 +1,37 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { useGoogleLogin } from '@react-oauth/google'
 import { apiGoogleAuth } from '../../api'
 import decode from 'jwt-decode'
+
 // assets and content
 import Navbar from '../../components/navbar'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import GoogleIcon from '@mui/icons-material/Google'
 import Button from '../../components/button'
 import Input from '../../components/input'
+import Spinner from '../../components/spinner/Spinner'
+import Alert from './alert/Alert'
 
 // actions
 import { signin, signup, googleAuth } from '../../features/auth/authSlice'
 
 const Auth = () => {
 	const dispatch = useDispatch()
+	const { isLoading, failed } = useSelector((state) => state.auth)
 	const navigate = useNavigate()
 	const [isSignUp, setIsSignUp] = useState(false)
 	const switchMode = () => {
 		setIsSignUp(!isSignUp)
 	}
+	const [showAlert, setShowAlert] = useState(false)
+
+	useEffect(() => {
+		if (failed) {
+			setShowAlert(true)
+		}
+	}, [failed, isLoading])
 
 	const initialFormState = {
 		firstName: '',
@@ -31,6 +42,10 @@ const Auth = () => {
 	}
 
 	const [formData, setFormData] = useState(initialFormState)
+
+	const handleClose = () => {
+		setShowAlert(false)
+	}
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -62,8 +77,11 @@ const Auth = () => {
 	return (
 		<>
 			<Navbar />
-			<div className=' bg-pattern h-screen items-center justify-center overflow-y-auto bg-contain bg-center p-2 font-poppins'>
-				<div className='flex items-center justify-center'>
+			<div
+				className={`bg-pattern h-screen items-center justify-center overflow-y-auto bg-contain bg-center p-2 font-poppins ${
+					isLoading ? 'blur' : ''
+				}`}>
+				<div className='flex flex-col items-center justify-center'>
 					<div className=' mt-20 flex w-fit flex-col items-center justify-center self-center bg-half-black p-4'>
 						<div className='mt-4 mb-4 flex flex-col items-center justify-center'>
 							<div className='flex items-center justify-center rounded-full bg-red p-2 text-xl text-white '>
@@ -75,6 +93,8 @@ const Auth = () => {
 						</div>
 
 						<form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
+							{showAlert ? <Alert closeHandler={handleClose} /> : null}
+
 							{isSignUp && (
 								<>
 									<Input
@@ -144,6 +164,11 @@ const Auth = () => {
 					</div>
 				</div>
 			</div>
+			{isLoading ? (
+				<div className='absolute top-0 flex h-screen w-full items-center justify-center'>
+					<Spinner />
+				</div>
+			) : null}
 		</>
 	)
 }
