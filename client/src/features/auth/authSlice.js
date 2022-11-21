@@ -48,7 +48,7 @@ const authSlice = createSlice({
 		},
 		googleAuth: (state, { payload }) => {
 			const user = {
-				name: `${payload.user_info.given_name}, ${payload.user_info.family_name}`,
+				name: payload.user_info.given_name,
 				email: payload.user_info.email,
 				token: payload.token,
 			}
@@ -56,6 +56,10 @@ const authSlice = createSlice({
 			localStorage.setItem('user', JSON.stringify(state.authData))
 			const navigate = payload.navigate
 			navigate('/')
+		},
+		clearError: (state) => {
+			state.failed = false
+			state.errorMessage = false
 		},
 	},
 	extraReducers: {
@@ -88,6 +92,6 @@ const authSlice = createSlice({
 	},
 })
 
-export const { authLogout, googleAuth } = authSlice.actions
+export const { authLogout, googleAuth, clearError } = authSlice.actions
 
 export default authSlice.reducer

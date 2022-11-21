@@ -15,7 +15,12 @@ import Spinner from '../../components/spinner/Spinner'
 import Alert from './alert/Alert'
 
 // actions
-import { signin, signup, googleAuth } from '../../features/auth/authSlice'
+import {
+	signin,
+	signup,
+	googleAuth,
+	clearError,
+} from '../../features/auth/authSlice'
 
 const Auth = () => {
 	const dispatch = useDispatch()
@@ -24,12 +29,19 @@ const Auth = () => {
 	const [isSignUp, setIsSignUp] = useState(false)
 	const switchMode = () => {
 		setIsSignUp(!isSignUp)
+		dispatch(clearError())
 	}
 	const [showAlert, setShowAlert] = useState(false)
 
 	useEffect(() => {
+		dispatch(clearError())
+	}, [])
+
+	useEffect(() => {
 		if (failed) {
 			setShowAlert(true)
+		} else {
+			setShowAlert(false)
 		}
 	}, [failed, isLoading])
 
@@ -71,6 +83,9 @@ const Auth = () => {
 				console.error(`Google Login Failed ${error}`)
 			}
 			dispatch(googleAuth({ user_info, token, navigate }))
+		},
+		onError: (error) => {
+			console.log(error)
 		},
 		flow: 'auth-code',
 	})
