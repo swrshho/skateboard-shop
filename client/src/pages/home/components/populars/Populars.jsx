@@ -1,8 +1,13 @@
+import { useSelector } from 'react-redux'
+
 import RedTextShadow from '../../../../components/redTextShadow/RedTextShadow'
 import ProductCard from '../../../../components/productCard/ProductCard'
-import { productsData } from './data'
 
 const Populars = () => {
+	const { products } = useSelector((state) => state.products)
+	const popularProducts = products
+		.filter((product) => product.rating > 4.5)
+		.slice(0, 3)
 	return (
 		<div className='flex flex-col items-center bg-dark-blue md:max-h-656px'>
 			<h1
@@ -13,12 +18,12 @@ const Populars = () => {
 			<div
 				className='mt-6 flex h-full w-full flex-wrap items-end
 				justify-center gap-x-1.5 md:max-w-4xl md:flex-row x-md:justify-between'>
-				{productsData.map((product, idx) => (
+				{popularProducts.map((product) => (
 					<ProductCard
 						name={product.name}
 						price={product.price}
-						image={product.image}
-						key={idx}
+						image={`data:image/png;base64, ${product.image}`}
+						key={product._id}
 					/>
 				))}
 			</div>
