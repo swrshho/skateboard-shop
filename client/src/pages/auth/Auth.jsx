@@ -181,7 +181,7 @@ const Auth = () => {
 			</div>
 			{isLoading ? (
 				<div className='absolute top-0 flex h-screen w-full items-center justify-center'>
-					<Spinner />
+					<Spinner color='primary' />
 				</div>
 			) : null}
 		</>

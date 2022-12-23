@@ -11,12 +11,16 @@ module.exports = {
 		extend: {
 			screens: {
 				'x-md': '800px',
+				'x-sm': '340px',
 			},
 			backgroundImage: {
 				heroBg: "url('assets/images/hero.jpg')",
 				bulletsBg: "url('assets/images/bullets-bg.png')",
 				bulletsBgFaded: "url('assets/images/bullets-bg-faded.png')",
 				authBg: "url('assets/images/auth-bg.png')",
+			},
+			backgroundColor: {
+				transparent: 'transparent',
 			},
 			spacing: {
 				'512px': '32rem',
@@ -42,6 +46,7 @@ module.exports = {
 			},
 			maxHeight: {
 				'420px': '26.125rem',
+				'496px': '31rem',
 				'656px': '41rem',
 			},
 			borderRadius: {
@@ -57,6 +62,7 @@ module.exports = {
 			'dark-blue': '#2B2D42',
 			'velvet-red': '#8C0020',
 			'nothing:': 'rgba(0,0,0, 0)',
+			gold: '#E5C100',
 		},
 		fontFamily: {
 			poppins: ['Poppins'],

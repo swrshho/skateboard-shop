@@ -65,6 +65,10 @@
 	content: '';
 	display: block;
 }
+.loading-whirl-secondry:after,
+.loading-whirl-secondry:before {
+	border: 6px solid #edf2f4;
+}
 .loading-whirl:before {
 	border-bottom-color: transparent;
 	border-left-color: transparent;

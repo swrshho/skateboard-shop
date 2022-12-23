@@ -51,7 +51,7 @@ const Navbar = () => {
 
 	return (
 		<>
-			<header className='fixed z-10 flex h-16 w-full items-center justify-center bg-half-black'>
+			<header className='fixed z-20 flex h-16 w-full items-center justify-center bg-half-black'>
 				<div className='flex w-11/12 items-center justify-between sm:container'>
 					<Logo />
 					<Link to='#' className='lg:hidden' onClick={showSidebar}>
@@ -59,8 +59,8 @@ const Navbar = () => {
 					</Link>
 
 					<nav
-						className={`nav absolute
-							 bottom-0 top-0 h-screen w-screen bg-black opacity-100 transition-all delay-200 ${
+						className={`nav absolute bottom-0
+							 top-0 h-screen w-screen bg-black opacity-100 transition-all delay-200 ${
 									sidebar ? 'left-0' : 'left-full'
 								} lg:static lg:h-fit lg:w-2/3`}>
 						<div
