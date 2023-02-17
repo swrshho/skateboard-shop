@@ -10,3 +10,4 @@ export const apiGoogleAuth = (code) => API.post('/users/google', { code })
 
 // Products
 export const fetchProducts = () => API.get('/products')
+export const fetchProductById = (id) => API.get(`/products/product/${id}`)

@@ -4,7 +4,9 @@ import * as api from '../../api'
 
 const initialState = {
 	products: [],
+	product: null,
 	isLoading: false,
+	productLoading: true,
 }
 
 export const getProducts = createAsyncThunk(
@@ -15,6 +17,19 @@ export const getProducts = createAsyncThunk(
 			return data
 		} catch (error) {
 			console.error(`Fetching Products Failed ${error}`)
+			return thunkAPI.rejectWithValue(error.response.data)
+		}
+	}
+)
+
+export const getProduct = createAsyncThunk(
+	'products/getProduct',
+	async (id, thunkAPI) => {
+		try {
+			const { data } = await api.fetchProductById(id)
+			return data
+		} catch (error) {
+			console.error(`Fetching Product By ID Failed ${error.response.data}`)
 			return thunkAPI.rejectWithValue(error.response.data)
 		}
 	}
@@ -34,6 +49,16 @@ const productsSlice = createSlice({
 		[getProducts.fulfilled]: (state, { payload }) => {
 			state.products = payload
 			state.isLoading = false
+		},
+		[getProduct.pending]: (state, action) => {
+			state.productLoading = true
+		},
+		[getProduct.rejected]: (state, action) => {
+			state.productLoading = false
+		},
+		[getProduct.fulfilled]: (state, { payload }) => {
+			state.product = payload
+			state.productLoading = false
 		},
 	},
 })

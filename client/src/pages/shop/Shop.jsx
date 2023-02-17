@@ -16,7 +16,6 @@ const Shop = () => {
 
 	const { products } = useSelector((state) => state.products)
 	const { isLoading } = useSelector((state) => state.products)
-	console.log(isLoading)
 
 	const sideMenuData = {
 		// returns unique categories and brands of products
@@ -72,7 +71,6 @@ const Shop = () => {
 
 	useEffect(() => {
 		setDisplayedProducts(sortProducts())
-		console.log('yoooo')
 	}, [sortMode])
 
 	useEffect(() => {

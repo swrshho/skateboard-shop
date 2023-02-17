@@ -34,8 +34,10 @@ module.exports = {
 			},
 			minWidth: {
 				92: '23rem',
+				'250px': '15.625rem',
 				'274px': '17.25rem',
 				'320px': '20rem',
+				'360px': '22.5rem',
 				'450px': '28.125rem',
 			},
 			maxWidth: {
@@ -57,6 +59,8 @@ module.exports = {
 			black: '#000000',
 			white: '#ffffff',
 			red: '#D80032',
+			gray: '#a2a2a2',
+			darkGray: '#545454',
 			'half-black': 'rgba(0,0,0,0.5)',
 			'light-bluish-gray': '#EDF2F4',
 			'dark-blue': '#2B2D42',
@@ -69,5 +73,7 @@ module.exports = {
 			anton: ['Anton'],
 		},
 	},
-	plugins: [],
+	plugins: [
+		require('@tailwindcss/line-clamp'),
+	],
 }

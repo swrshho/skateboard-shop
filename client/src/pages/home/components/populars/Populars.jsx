@@ -22,7 +22,7 @@ const Populars = () => {
 					<ProductCard
 						name={product.name}
 						price={product.price}
-						image={`data:image/png;base64, ${product.image}`}
+						image={`data:image/png;base64, ${product.images[0]}`}
 						key={product._id}
 					/>
 				))}
