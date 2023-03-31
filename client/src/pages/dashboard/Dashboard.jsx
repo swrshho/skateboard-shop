@@ -35,7 +35,7 @@ const Dashboard = () => {
 						<UserStats
 							user={authData}
 							editProfileModal={editProfileModal}
-							seteEitProfileModal={setEditProfileModal}
+							setEditProfileModal={setEditProfileModal}
 						/>
 
 						<EditProfileModal

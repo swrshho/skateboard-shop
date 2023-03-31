@@ -10,7 +10,7 @@ import Spinner from '../../../../components/spinner'
 const EditProfileModal = ({
 	userId,
 	isLoading,
-	edtiProfileModal,
+	editProfileModal,
 	setEditProfileModal,
 }) => {
 	const dispatch = useDispatch()
@@ -26,8 +26,8 @@ const EditProfileModal = ({
 	return (
 		<>
 			<div
-				className={`absolute flex w-full min-w-320px max-w-lg flex-col justify-between gap-4 self-center rounded-xLarge bg-light-bluish-gray p-7 shadow-2xl ${
-					edtiProfileModal ? 'block' : 'hidden'
+				className={`editProfileModal absolute flex w-full min-w-320px max-w-lg flex-col justify-between gap-4 self-center rounded-xLarge bg-light-bluish-gray p-7 shadow-2xl ${
+					editProfileModal ? 'block' : 'hidden'
 				} ${isLoading ? 'blur' : ''}`}>
 				<div className='flex justify-between'>
 					<span className='text-xl font-bold'>Change Profile Picture</span>
