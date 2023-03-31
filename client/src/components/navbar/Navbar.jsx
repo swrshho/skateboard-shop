@@ -9,19 +9,24 @@ import { googleLogout } from '@react-oauth/google'
 import Logo from '../../assets/logo/Logo'
 import NavBtn from '../../assets/nav-btns/NavBtn'
 import { NavbarData } from './NavbarData'
+import Seperator from '../../assets/line-seperator'
 
 // icons
 import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import LogoutIcon from '@mui/icons-material/Logout'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import PersonIcon from '@mui/icons-material/Person'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 
 // actions
 import { authLogout } from '../../features/auth/authSlice'
 
 const Navbar = () => {
 	const [sidebar, setSidebar] = useState(false)
+	const [dropdown, setDropdown] = useState(false)
 	const showSidebar = () => setSidebar(!sidebar)
 	const location = useLocation()
 	const navigate = useNavigate()
@@ -48,6 +53,13 @@ const Navbar = () => {
 
 		setUser(JSON.parse(localStorage.getItem('user')))
 	}, [location])
+
+	const nameShortener = (name) => {
+		if (name.length > 10) {
+			return `${name.slice(0, 12)}...`
+		}
+		return name
+	}
 
 	return (
 		<>
@@ -89,7 +101,7 @@ const Navbar = () => {
 							</div>
 
 							<div className='nav-buttons flex justify-end lg:mr-0'>
-								<Link to='#'>
+								<Link to='#' className={`${user ? 'mr-44' : ''}`}>
 									<ShoppingCartIcon
 										fontSize='large'
 										className='mr-5 text-light-bluish-gray'
@@ -97,9 +109,35 @@ const Navbar = () => {
 								</Link>
 
 								{user ? (
-									<NavBtn onClick={logout}>
-										<LogoutIcon />
-										{user.name}
+									<NavBtn
+										onClick={() => setDropdown(!dropdown)}
+										isOpen={dropdown}>
+										<div>
+											{dropdown ? <ArrowRightIcon /> : <ArrowDropDownIcon />}
+											<span className='overflow-hidden text-ellipsis whitespace-nowrap'>
+												{nameShortener(user.name)}
+											</span>
+										</div>
+
+										<div
+											className={`${
+												dropdown ? 'block' : 'hidden'
+											} mt-2 flex flex-col items-start gap-1 text-base transition-all`}>
+											<Seperator />
+											<Link
+												className='flex w-full justify-between rounded pl-1 text-left transition-all hover:bg-white'
+												to={`/dashboard/${user._id}`}>
+												Dashboard
+												<KeyboardArrowRightIcon />
+											</Link>
+											<Seperator />
+											<button
+												className='flex w-full justify-between rounded pl-1 text-left transition-all hover:bg-white'
+												onClick={logout}>
+												Logout
+												<LogoutIcon />
+											</button>
+										</div>
 									</NavBtn>
 								) : (
 									<NavBtn link path='/auth'>

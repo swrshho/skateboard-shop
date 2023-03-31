@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { OAuth2Client } = require('google-auth-library')
+const mongoose = require('mongoose')
 
 const User = require('../models/user')
 
@@ -77,9 +78,89 @@ const googleLogin = async (req, res) => {
 		const { tokens } = await oAuth2Client.getToken(req.body.code)
 		return res.status(200).json({ tokens })
 	} catch (error) {
+		console.log(error)
 		return res.status(500).json({ message: `Google Login failed ${error}` })
 	}
 }
+
+const getUser = async (req, res) => {
+	try {
+		const { id } = req.params
+		const data = await User.findById(id)
+		res.status(200).json(data)
+	} catch (error) {
+		res.status(404).json({ message: error.message })
+	}
+}
+
+const updateProfile = async (req, res) => {
+	const { picture, id } = JSON.parse(req.body.data)
+	try {
+		const updatedUser = await User.findByIdAndUpdate(
+			id,
+			{ picture: picture },
+			{ new: true }
+		)
+		res.status(200).json(updatedUser)
+	} catch (error) {
+		res.status(400).json({ message: error.message })
+	}
+}
+
+const addAddress = async (req, res) => {
+	const formData = req.body
+	const userId = req.userId
+	try {
+		const newAddress = { ...formData }
+		await User.updateOne({ _id: userId }, { $push: { addresses: newAddress } })
+	} catch (error) {
+		res.status(409).json({ message: error.message })
+	}
+}
+
+const editAddress = async (req, res) => {
+	const { addressId, userId } = req.params
+	const formData = req.body
+
+	if (!mongoose.Types.ObjectId.isValid(addressId)) {
+		res.status(404).send('No Address With That ID')
+	}
+
+	try {
+		await User.updateOne(
+			{ _id: userId },
+			{ $set: { addresses: { _id: addressId, ...formData } } }
+		)
+		res.status(200).json(`Address with ${addressId} id edited successfully.`)
+	} catch (error) {
+		res.status(409).json({ message: error.message })
+	}
+}
+
+const deleteAddress = async (req, res) => {
+	const addressId = req.params.id
+	const { userId } = req.body
+
+	try {
+		await User.updateOne(
+			{ _id: userId },
+			{ $pull: { addresses: { _id: addressId } } }
+		)
+		res.status(200).json(`Address with ${addressId} id deleted successfully.`)
+	} catch (error) {
+		res.status(409).json({ message: error.message })
+	}
+}
+
 // const googleRefreshToken = () => {}
 
-module.exports = { signin, signup, googleLogin }
+module.exports = {
+	signin,
+	signup,
+	googleLogin,
+	getUser,
+	updateProfile,
+	addAddress,
+	editAddress,
+	deleteAddress,
+}

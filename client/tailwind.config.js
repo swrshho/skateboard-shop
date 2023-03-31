@@ -12,12 +12,15 @@ module.exports = {
 			screens: {
 				'x-md': '800px',
 				'x-sm': '340px',
+				'sm-down': { max: '640px' },
+				'md-down': { max: '768px' },
 			},
 			backgroundImage: {
 				heroBg: "url('assets/images/hero.jpg')",
 				bulletsBg: "url('assets/images/bullets-bg.png')",
 				bulletsBgFaded: "url('assets/images/bullets-bg-faded.png')",
 				authBg: "url('assets/images/auth-bg.png')",
+				whiteBg: "url('assets/images/white-bg.png')",
 			},
 			backgroundColor: {
 				transparent: 'transparent',
@@ -25,6 +28,7 @@ module.exports = {
 			spacing: {
 				'512px': '32rem',
 				'650px': '40.625rem',
+				'580px': '36.25rem',
 			},
 			dropShadow: {
 				red: '-6px 8px 0 rgba(261, 0, 50, 1)',
@@ -51,29 +55,30 @@ module.exports = {
 				'496px': '31rem',
 				'656px': '41rem',
 			},
+			minHeight: {
+				'576px': '36rem',
+			},
 			borderRadius: {
 				xLarge: '2.5rem',
 			},
-		},
-		colors: {
-			black: '#000000',
-			white: '#ffffff',
-			red: '#D80032',
-			gray: '#a2a2a2',
-			darkGray: '#545454',
-			'half-black': 'rgba(0,0,0,0.5)',
-			'light-bluish-gray': '#EDF2F4',
-			'dark-blue': '#2B2D42',
-			'velvet-red': '#8C0020',
-			'nothing:': 'rgba(0,0,0, 0)',
-			gold: '#E5C100',
+			colors: {
+				black: '#000000',
+				white: '#ffffff',
+				red: '#D80032',
+				gray: '#a2a2a2',
+				darkGray: '#545454',
+				'half-black': 'rgba(0,0,0,0.5)',
+				'light-bluish-gray': '#EDF2F4',
+				'dark-blue': '#2B2D42',
+				'velvet-red': '#8C0020',
+				'nothing:': 'rgba(0,0,0, 0)',
+				'transparent-white': 'rgba(225,225,225,0.1)',
+				gold: '#E5C100',
+			},
 		},
 		fontFamily: {
 			poppins: ['Poppins'],
 			anton: ['Anton'],
 		},
 	},
-	plugins: [
-		require('@tailwindcss/line-clamp'),
-	],
 }
