@@ -19,12 +19,7 @@ const Populars = () => {
 				className='mt-6 flex h-full w-full flex-wrap items-end
 				justify-center gap-x-1.5 md:max-w-4xl md:flex-row x-md:justify-between'>
 				{popularProducts.map((product) => (
-					<ProductCard
-						name={product.name}
-						price={product.price}
-						image={`data:image/png;base64, ${product.images[0]}`}
-						key={product._id}
-					/>
+					<ProductCard product={product} key={product._id} />
 				))}
 			</div>
 		</div>

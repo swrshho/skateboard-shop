@@ -1,7 +1,16 @@
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../../../features/cart/cartSlice'
+
 import RatingStar from '../../../../components/ratingStar'
-import CTA from '../../../../components/cta'
+import Button from '../../../../components/button'
 
 const ProductInfo = ({ product }) => {
+	const dispatch = useDispatch()
+
+	const addToCartHandler = () => {
+		dispatch(addToCart(product))
+	}
+
 	return (
 		<div className='mt-12 w-full min-w-250px max-w-2xl space-y-4 rounded-xLarge bg-light-bluish-gray p-4 sm:flex sm:justify-between sm:p-8 lg:mt-0'>
 			{/* title and info */}
@@ -119,12 +128,13 @@ const ProductInfo = ({ product }) => {
 							<span className='text-base text-gray'> + tax & delivery</span>
 						</span>
 					</div>
-					<CTA
-						type='primary'
-						path='#'
-						className='flex w-3/4 justify-center self-center'>
-						Add To Cart
-					</CTA>
+					<Button
+						className='lex w-3/4 justify-center self-center'
+						type='button'
+						color='primary'
+						onClick={addToCartHandler}>
+						add to cart
+					</Button>
 				</div>
 			</div>
 		</div>

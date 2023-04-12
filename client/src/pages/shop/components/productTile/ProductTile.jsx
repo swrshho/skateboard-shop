@@ -1,19 +1,27 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../../../features/cart/cartSlice'
+
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded'
-import FavoriteRounded from '@mui/icons-material/FavoriteRounded'
 import RatingStar from '../../../../components/ratingStar'
+import Button from '../../../../components/button/Button'
 
 const ProductTile = ({ product }) => {
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
 	const [liked, setLiked] = useState(false)
 
 	const openProduct = () => {
 		navigate(`/shop/${product._id}`)
 	}
 
+	const addToCartHandler = () => {
+		dispatch(addToCart(product))
+	}
+
 	return (
-		<div className='mb-8 flex h-64 w-full max-w-330px flex-col rounded-xLarge bg-light-bluish-gray p-6 font-poppins last:mb-0 md:mb-0 x-sm:h-auto x-sm:max-h-72 x-sm:w-auto x-sm:min-w-320px'>
+		<div className=' mb-8 flex w-full max-w-330px flex-col rounded-xLarge bg-light-bluish-gray p-6 font-poppins last:mb-0 md:mb-0 x-sm:h-auto x-sm:max-h-80 x-sm:w-auto x-sm:min-w-320px'>
 			<div className='flex justify-between'>
 				<RatingStar rating={product.rating} />
 				<button
@@ -44,6 +52,13 @@ const ProductTile = ({ product }) => {
 				<span className='font-poppins text-base font-medium text-dark-blue md:text-lg'>
 					${product.price}
 				</span>
+				<Button
+					className='py-1 text-sm md:text-base'
+					type='button'
+					color='primary'
+					onClick={addToCartHandler}>
+					add to cart
+				</Button>
 			</div>
 		</div>
 	)

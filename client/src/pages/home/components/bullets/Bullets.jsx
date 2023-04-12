@@ -24,7 +24,7 @@ const Bullets = () => {
 						))}
 					</IconContext.Provider>
 				</div>
-				<CTA type='primary' path='./shop' rounded>
+				<CTA type='primary' path='/shop' rounded>
 					shop now
 				</CTA>
 			</div>

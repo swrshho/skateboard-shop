@@ -11,12 +11,20 @@ const {
 	editAddress,
 	deleteAddress,
 } = require('../controllers/users')
+
+const { addToCart } = require('../controllers/purchasing')
 const { auth } = require('../middleware/auth')
 
+// authentication
 router.post('/signin', signin)
 router.post('/signup', signup)
 router.post('/google', googleLogin)
 router.get('/user/:id', getUser)
+
+// purchasing
+router.get('/addToCart/:productId', auth, addToCart)
+
+// user dashboard
 router.post('/update-profile', updateProfile)
 router.post('/add-address', auth, addAddress)
 router.patch('/edit-address/:addressId/:userId', auth, editAddress)

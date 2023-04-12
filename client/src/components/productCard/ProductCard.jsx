@@ -1,6 +1,17 @@
-import CTA from '../cta/CTA'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../features/cart/cartSlice'
 
-const ProductCard = ({ name, price, image }) => {
+import Button from '../button'
+
+const ProductCard = ({ product }) => {
+	const { name, price } = product
+	const image = `data:image/png;base64, ${product.images[0]}`
+	const dispatch = useDispatch()
+
+	const addToCartHandler = () => {
+		dispatch(addToCart(product))
+	}
+
 	return (
 		<div
 			className={`mb-6 flex h-40 max-h-420px w-5/6 max-w-xs flex-col items-center
@@ -19,9 +30,13 @@ const ProductCard = ({ name, price, image }) => {
 			<span className='font-poppins text-base font-medium text-dark-blue md:text-lg'>
 				${price}
 			</span>
-			<CTA className='py-1 text-sm md:text-base' type='primary' path='/shop'>
+			<Button
+				className='py-1 text-sm md:text-base'
+				type='button'
+				color='primary'
+				onClick={addToCartHandler}>
 				add to cart
-			</CTA>
+			</Button>
 		</div>
 	)
 }
