@@ -1,6 +1,11 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'http://localhost:5000' })
+// const BASE_URL =
+// 	!process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+// 		? 'https://localhost:5000'
+// 		: 'https://rolling-wheels.onrender.com'
+
+const API = axios.create({ baseURL: 'https://rolling-wheels.onrender.com' })
 
 //
 API.interceptors.request.use((req) => {
